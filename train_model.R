@@ -31,3 +31,5 @@ for (i in c(1,3,5,7)) {
 }
 mtext("log serum bilirubin", side = 2, line = -1, outer = TRUE)
 mtext("Survival Probability", side = 4, line = -1, outer = TRUE)
+dev.off()
+
