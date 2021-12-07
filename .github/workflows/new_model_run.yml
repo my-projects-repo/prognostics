@@ -27,13 +27,9 @@ jobs:
         run: |
           R -e 'renv::run("train_model.R")'
           
-          # Add model diagnostics plot to report
-          echo "Model diagnostics" > report.md
-          cml-publish mdl_diagnostics.png --md >> report.md 
-          
           # Add model predictions plot to report
           echo "Model predictions" >> report.md
-          cml-publish mdl_predictions.png --md >> report.md
+          cml-publish model_predictions.png --md >> report.md
           
           # Send report
           cml-send-comment report.md
