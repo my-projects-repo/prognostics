@@ -23,6 +23,7 @@ for (i in 1:nrow(ND)) {
 }
 
 # plot of the dynamic survival probabilities
+png("model_predictions.png")
 par(mfrow = c(2, 2), oma = c(0, 2, 0, 2))
 for (i in c(1,3,5,7)) {
   plot(survPreds[[i]], estimator = "median", conf.int = TRUE,
