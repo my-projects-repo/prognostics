@@ -1,5 +1,8 @@
+on:
+  push:
+    branches: new_model
 name: prognostics_new_run
-on: [push]
+
 jobs:
   run:
     runs-on: ubuntu-latest
