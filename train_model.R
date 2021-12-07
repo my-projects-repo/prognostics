@@ -10,7 +10,7 @@ library(lattice)
 # )
 
 # Nonlinear model
-lmeFit <- 
+lmeFit <-
   lme(log(serBilir) ~ drug*(year + I(year^2)), random = ~ year + I(year^2)|id, data = pbc2)
 
 # Linear model
