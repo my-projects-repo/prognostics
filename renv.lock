@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.1.1",
+    "Version": "4.1.2",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -9,6 +9,13 @@
     ]
   },
   "Packages": {
+    "JM": {
+      "Package": "JM",
+      "Version": "1.4-8",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4b5610c4f937cfe78e54189564b23b73"
+    },
     "MASS": {
       "Package": "MASS",
       "Version": "7.3-54",

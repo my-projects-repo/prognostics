@@ -9,8 +9,12 @@ library(lattice)
 #   data = pbc2
 # )
 
-lmeFit <- lme(log(serBilir) ~ drug*(year + I(year^2)), random = ~ year + I(year^2)|id, data = pbc2)
+# Nonlinear model
+lmeFit <- 
+  lme(log(serBilir) ~ drug*(year + I(year^2)), random = ~ year + I(year^2)|id, data = pbc2)
 
+# Linear model
+#lmeFit <- lme(log(serBilir) ~ drug*(year), random = ~ year|id, data = pbc2)
 coxFit <- coxph(Surv(years, status2) ~ drug + prothrombin, data = pbc2.id, x = TRUE)
 
 jmFit <- jointModel(lmeFit, coxFit, timeVar = "year", method = "weibull-AFT-GH")
@@ -23,6 +27,7 @@ for (i in 1:nrow(ND)) {
 }
 
 # plot of the dynamic survival probabilities
+png("model_predictions.png")
 par(mfrow = c(2, 2), oma = c(0, 2, 0, 2))
 for (i in c(1,3,5,7)) {
   plot(survPreds[[i]], estimator = "median", conf.int = TRUE,
@@ -31,3 +36,5 @@ for (i in c(1,3,5,7)) {
 }
 mtext("log serum bilirubin", side = 2, line = -1, outer = TRUE)
 mtext("Survival Probability", side = 4, line = -1, outer = TRUE)
+dev.off()
+
