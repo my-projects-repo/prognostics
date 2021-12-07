@@ -25,7 +25,7 @@ jobs:
         env: 
           repo_token: ${{ secrets.GITHUB_TOKEN }} 
         run: |
-          R -e 'renv::run("main_prognostics.R")'
+          R -e 'renv::run("train_model.R")'
           
           # Add model diagnostics plot to report
           echo "Model diagnostics" > report.md
