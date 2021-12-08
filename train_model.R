@@ -15,8 +15,8 @@ lmeFit <-
 
 # Linear model
 #lmeFit <- lme(log(serBilir) ~ drug*(year), random = ~ year|id, data = pbc2)
-coxFit <- coxph(Surv(years, status2) ~ drug + prothrombin, data = pbc2.id, x = TRUE)
 
+coxFit <- coxph(Surv(years, status2) ~ drug + prothrombin, data = pbc2.id, x = TRUE)
 jmFit <- jointModel(lmeFit, coxFit, timeVar = "year", method = "weibull-AFT-GH")
 
 ND <- pbc2[pbc2$id == 2, ]
