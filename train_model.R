@@ -10,11 +10,11 @@ library(lattice)
 # )
 
 # Nonlinear model
-lmeFit <-
-  lme(log(serBilir) ~ drug*(year + I(year^2)), random = ~ year + I(year^2)|id, data = pbc2)
+# lmeFit <-
+#   lme(log(serBilir) ~ drug*(year + I(year^2)), random = ~ year + I(year^2)|id, data = pbc2)
 
 # Linear model
-#lmeFit <- lme(log(serBilir) ~ drug*(year), random = ~ year|id, data = pbc2)
+lmeFit <- lme(log(serBilir) ~ drug*(year), random = ~ year|id, data = pbc2)
 
 coxFit <- coxph(Surv(years, status2) ~ drug + prothrombin, data = pbc2.id, x = TRUE)
 jmFit <- jointModel(lmeFit, coxFit, timeVar = "year", method = "weibull-AFT-GH")
