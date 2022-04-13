@@ -1,24 +1,16 @@
 library(JM)
 library(lattice)
 
-# lmeFit <- lme(
-#   fixed = log(serBilir) ~ bs(year, 4, Boundary.knots = c(0, 15)),
-#   random = list(
-#     id = pdDiag(form=~bs(year,4, Boundary.knots = c(0,15)))
-#   ),
-#   data = pbc2
-# )
+use_linear_model <- 0
 
-
-# Nonlinear model
-#lmeFit <-
-#  lme(log(serBilir) ~ drug*(year + I(year^2)), random = ~ year + I(year^2)|id, data = pbc2)
-
-
-## Linear model
-lmeFit <- lme(log(serBilir) ~ drug*(year), random = ~ year|id, data = pbc2)
-
-
+if(use_linear_model){
+  ## Linear model
+  lmeFit <- lme(log(serBilir) ~ drug*(year), random = ~ year|id, data = pbc2)
+}else{
+  # Nonlinear model
+  lmeFit <-
+    lme(log(serBilir) ~ drug*(year + I(year^2)), random = ~ year + I(year^2)|id, data = pbc2)
+}
 coxFit <- coxph(Surv(years, status2) ~ drug + prothrombin, data = pbc2.id, x = TRUE)
 jmFit <- jointModel(lmeFit, coxFit, timeVar = "year", method = "weibull-AFT-GH")
 
