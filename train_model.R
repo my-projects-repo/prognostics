@@ -14,7 +14,7 @@ library(lattice)
 #lmeFit <-
 #   lme(log(serBilir) ~ drug*(year + I(year^2)), random = ~ year + I(year^2)|id, data = pbc2)
 
-# Linear model
+## Linear model
 lmeFit <- lme(log(serBilir) ~ drug*(year), random = ~ year|id, data = pbc2)
 
 coxFit <- coxph(Surv(years, status2) ~ drug + prothrombin, data = pbc2.id, x = TRUE)
